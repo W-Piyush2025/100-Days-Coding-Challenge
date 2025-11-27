@@ -1,4 +1,4 @@
-//Delete an element from an array.
+//Find the second largest element in an array.
 
 #include <stdio.h>
 int main() 
@@ -6,31 +6,40 @@ int main()
   int size, i, pos;
   printf("Enter the number of elements: ");
   scanf("%d", &size);
+  if (size < 2) 
+  {
+    printf("Array must have at least two elements.\n");
+    return 1;
+  }
   int arr[size];
   printf("Enter elements: ", size);
   for (i = 0; i < size; i++) 
   {
     scanf("%d", &arr[i]);
   }
-  printf("Enter index to delete: ", size - 1);
-  scanf("%d", &pos);
-  if (pos < 0 || pos >= size) 
+  int lar, seclar;
+  if (arr[0] > arr[1]) 
   {
-    printf("Invalid index!\n");
+    lar = arr[0];
+    seclar = arr[1];
   } 
   else 
   {
-    for (i = pos; i < size - 1; i++) 
-    {
-      arr[i] = arr[i + 1];
-    }
-    size--; 
-    printf("Array after deletion: \n");
-    for (i = 0; i < size; i++) 
-    {
-      printf("%d ", arr[i]);
-    }
-    printf("\n");
+    lar = arr[1];
+    seclar = arr[0];
   }
+  for (i = 2; i < size; i++) 
+  {
+    if (arr[i] > lar) 
+    {
+      seclar = lar;
+      lar = arr[i];
+    } 
+    else if (arr[i] > seclar && arr[i] != lar) 
+    {
+      seclar = arr[i];
+    }
+  }
+  printf("Second largest element: %d\n", seclar);
   return 0;
 }
