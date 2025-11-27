@@ -1,25 +1,26 @@
-//Write a program to check if a number is a perfect number.
+//Write a program to check if a number is a strong number.
 
 #include <stdio.h>
 int main() 
 {
-  int num, sum = 0;
+  int num, ori, d, sum = 0;
   printf("Enter a number: ");
   scanf("%d", &num);
-  for (int i = 1; i < num; i++) 
+  ori = num;
+  while (num > 0) 
   {
-    if (num % i == 0) 
+    d = num % 10;
+    int fact = 1;
+    for (int i = 1; i <= d; i++) 
     {
-      sum += i;
+      fact *= i;
     }
+    sum += fact;     
+    num /= 10;    
   }
-  if (sum == num) 
-  {
-    printf("Perfect Number");
-  } 
-  else 
-  {
-    printf("Not a Perfect Number");
-  }
+  if (sum == ori)
+  printf("Strong Number");
+  else
+  printf("NOT a Strong Number");
   return 0;
 }
