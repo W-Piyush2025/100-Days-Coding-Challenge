@@ -1,36 +1,32 @@
-//Write a Program to take an integer array nums. Print an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i]. The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+//Write a program to take an integer array arr and an integer k as inputs. Print the maximum sum of all the subarrays of size k.
 
 #include <stdio.h>
 int main() 
 {
-    int nums[1000], answer[1000], n, i, j;
-    printf("Enter number of elements: ");
+    int arr[1000], n, k, i, j;
+    printf("Enter the number of elements: ");
     scanf("%d", &n);
-    printf("Enter elements: ");
+    printf("Enter elements :");
     for (i = 0; i < n; i++) 
     {
-        scanf("%d", &nums[i]);
+        scanf("%d", &arr[i]);
     }
-    for (i = 0; i < n; i++) 
+    printf("Enter an integer: ");
+    scanf("%d", &k);
+    int maxSum = 0;
+    for (i = 0; i < k; i++) 
     {
-        int product = 1;
-        for (j = 0; j < n; j++) 
-        {
-            if (i != j) 
-            {
-                product *= nums[j];
-            }
-        }
-        answer[i] = product;
+        maxSum += arr[i]; 
     }
-    for (i = 0; i < n; i++) 
+    int currentSum = maxSum;
+    for (i = k; i < n; i++) 
     {
-        printf("%d", answer[i]);
-        if (i != n - 1) 
+        currentSum = currentSum - arr[i - k] + arr[i]; 
+        if (currentSum > maxSum) 
         {
-            printf(",");
+            maxSum = currentSum;
         }
     }
-    printf("\n");
+    printf("%d\n", maxSum);
     return 0;
 }
