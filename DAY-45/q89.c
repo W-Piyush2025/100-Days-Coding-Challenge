@@ -1,20 +1,22 @@
-//Replace spaces with hyphens in a string.
+//Count frequency of a given character in a string.
 
 #include <stdio.h>
 int main() 
 {
-    char str[1000];
-    int i = 0;
+    char str[1000], ch;
+    int i = 0, count = 0;
     printf("Enter a string: ");
-    fgets(str, sizeof(str), stdin);  
+    fgets(str, sizeof(str), stdin);
+    printf("Enter the character to count: ");
+    scanf("%c", &ch);
     while (str[i] != '\0') 
     {
-        if (str[i] == ' ') 
+        if (str[i] == ch) 
         {
-            str[i] = '-';
+            count++;
         }
         i++;
     }
-    printf("Modified string: %s", str);
+    printf("Frequency of '%c': %d\n", ch, count);
     return 0;
 }
